@@ -1,5 +1,5 @@
-#  <h1 align="center"> Like Button Animation Library [![](https://jitpack.io/v/AppcentMobile/Animated-like-Button.svg)](https://jitpack.io/#AppcentMobile/Animated-like-Button) </h1>  
-<p align="center">The Animated Like Button library is a versatile and user-friendly tool that empowers developers to create customizable buttons with animated interactions. Designed to enhance user engagement, this library allows you to effortlessly integrate animated like buttons into your projects, adding a touch of dynamism to user interactions. </p>
+#  <h1 align="center"> Animated Like Button Library [![](https://jitpack.io/v/AppcentMobile/Animated-like-Button.svg)](https://jitpack.io/#AppcentMobile/Animated-like-Button) </h1>  
+<p align="center">Animated Like Button library is a versatile and user-friendly tool that empowers developers to create customizable buttons with animated interactions. Designed to enhance user engagement, this library allows you to effortlessly integrate animated like buttons into your projects, adding a touch of dynamism to user interactions. </p>
 
 
  #  <h1 align="center">🖼 Preview </h1>
