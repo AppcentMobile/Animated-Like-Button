@@ -34,7 +34,7 @@
 Step 2. Add the dependency
 ```bash
  dependencies {
-	         implementation 'com.github.AppcentMobile:Animated-like-Button:Tag:v1.0.0'
+	         implementation 'com.github.AppcentMobile:Animated-like-Button:v1.0.0'
 	}
 ```
  
