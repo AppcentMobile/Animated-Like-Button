@@ -43,15 +43,32 @@ Step 2. Add the dependency
 
 |  Properties          |  Description               |
 |----------------------|----------------------------|
-|      |   |
-|     |   |
-|     |   |
-|     |    |
-
+|  likeBgColor    |  Set the background color when clicked for liking |
+|  likeImgColor   | Set the icon color when clicked for liking.  |
+|  unlikeBgColor   | Set the background color when clicked to unlike  |
+|  unlikeImgColor   |  Set the icon color when clicked to unlike  |
+|  iconDrawable    |  set the drawable for the icon |
+|  iconWidth   | the width of the icon  |
+|  iconHeight   | the height of the icon  |
  
  #  <h1 align="center">📎 Example </h1>
 ```bash
-  < />
+  <com.appcent.animatedbutton.LikeButton
+                android:id="@+id/bttn_celebrate"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="6dp"
+                app:iconDrawable="@drawable/baseline_celebration_24"
+                app:iconHeight="40dp"
+                app:iconWidth="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:likeImgColor="#FFD700"
+                app:likeBgColor="#001F3F"
+                />
+
 ```
 
 
