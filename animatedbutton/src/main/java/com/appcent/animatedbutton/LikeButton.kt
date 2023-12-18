@@ -1,10 +1,13 @@
 package com.appcent.animatedbutton
 
-
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
@@ -13,14 +16,13 @@ import androidx.core.animation.doOnStart
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.withScale
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-
 import com.google.android.material.math.MathUtils.lerp
+
 class LikeButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0
 ) : View(context, attrs, defStyle) {
-
 
     private var fraction: Float = 0f
 
@@ -34,28 +36,31 @@ class LikeButton @JvmOverloads constructor(
     private val paint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
         textAlign = Paint.Align.LEFT
     }
+
     // Initialize color variables with default values or values from attributes
-    private var unlikeBgColor = ContextCompat.getColor(context, R.color.unlike_bg_color)
-    private var BgColor = ContextCompat.getColor(context, R.color.like_bg_color)
-    private var likeBgColor = ContextCompat.getColor(context, R.color.like_bg_color)
-    private var unlikeImgColor = ContextCompat.getColor(context, R.color.unlike_img_color)
-    private var ImgColor = ContextCompat.getColor(context, R.color.like_img_color)
-    private var likeImgColor = ContextCompat.getColor(context, R.color.like_img_color)
+    private var unlikeBackgroundColor = ContextCompat.getColor(context, R.color.unlike_background_color)
+    private var backgroundColor = ContextCompat.getColor(context, R.color.like_background_color)
+    private var likeBackgroundColor = ContextCompat.getColor(context, R.color.like_background_color)
+    private var unlikeImageColor = ContextCompat.getColor(context, R.color.unlike_image_color)
+    private var imageColor = ContextCompat.getColor(context, R.color.like_image_color)
+    private var likeImageColor = ContextCompat.getColor(context, R.color.like_image_color)
 
     private var loopLike: Boolean = false
     private var uiState: UIState = UIState.UnLike
 
-
     init {
         // Obtain attribute values if provided in XML layout
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.LikeButton)
-        BgColor = typedArray.getColor(R.styleable.LikeButton_likeBgColor, BgColor)
-        ImgColor = typedArray.getColor(R.styleable.LikeButton_likeImgColor, ImgColor)
-        likeBgColor = typedArray.getColor(R.styleable.LikeButton_likeBgColor, BgColor)
-        likeImgColor = typedArray.getColor(R.styleable.LikeButton_likeImgColor, ImgColor)
-        unlikeBgColor = typedArray.getColor(R.styleable.LikeButton_unlikeBgColor, unlikeBgColor)
-        unlikeImgColor = typedArray.getColor(R.styleable.LikeButton_unlikeImgColor, unlikeImgColor)
-        val iconDrawableResId = typedArray.getResourceId(R.styleable.LikeButton_iconDrawable, R.drawable.ic_baseline_add_smile)
+        backgroundColor = typedArray.getColor(R.styleable.LikeButton_likeBackgroundColor, backgroundColor)
+        imageColor = typedArray.getColor(R.styleable.LikeButton_likeImageColor, imageColor)
+        likeBackgroundColor = typedArray.getColor(R.styleable.LikeButton_likeBackgroundColor, backgroundColor)
+        likeImageColor = typedArray.getColor(R.styleable.LikeButton_likeImageColor, imageColor)
+        unlikeBackgroundColor = typedArray.getColor(R.styleable.LikeButton_unlikeBackgroundColor, unlikeBackgroundColor)
+        unlikeImageColor = typedArray.getColor(R.styleable.LikeButton_unlikeImageColor, unlikeImageColor)
+        val iconDrawableResId = typedArray.getResourceId(
+            R.styleable.LikeButton_iconDrawable,
+            R.drawable.ic_baseline_add_smile
+        )
         iconWidth = typedArray.getDimensionPixelSize(R.styleable.LikeButton_iconWidth, 64.dpToPx())
         iconHeight = typedArray.getDimensionPixelSize(R.styleable.LikeButton_iconHeight, 64.dpToPx())
         iconBitmap = scaleBitmap(getBitmap(iconDrawableResId), iconWidth, iconHeight)
@@ -67,8 +72,8 @@ class LikeButton @JvmOverloads constructor(
     private val drawableCanvas = Canvas(this.iconBitmap)
     private val argbEvaluator = ArgbEvaluator()
     private fun getRoundRectPaint() = paint.apply {
-        val bgFraction = (fraction * 2).coerceAtMost(1f)
-        color = argbEvaluator.evaluate(bgFraction, unlikeBgColor, BgColor) as Int
+        val backgroundFraction = (fraction * 2).coerceAtMost(1f)
+        color = argbEvaluator.evaluate(backgroundFraction, unlikeBackgroundColor, backgroundColor) as Int
     }
 
     private fun Int.dpToPx(): Int {
@@ -84,8 +89,8 @@ class LikeButton @JvmOverloads constructor(
     }
 
     private fun getBitmapPaint() = paint.apply {
-        val bgFraction = (fraction * 2).coerceAtMost(1f)
-        color = argbEvaluator.evaluate(bgFraction, unlikeImgColor, ImgColor) as Int
+        val backgroundFraction = (fraction * 2).coerceAtMost(1f)
+        color = argbEvaluator.evaluate(backgroundFraction, unlikeImageColor, imageColor) as Int
     }
 
     private fun tintBitmap() {
@@ -94,17 +99,15 @@ class LikeButton @JvmOverloads constructor(
         paint.xfermode = null
     }
 
-    private fun updateBgColor(uiState: UIState) {
+    private fun updateBackgroundColor(uiState: UIState) {
         if (uiState == UIState.UnLike) {
-            BgColor = unlikeBgColor
-            ImgColor = unlikeImgColor
+            backgroundColor = unlikeBackgroundColor
+            imageColor = unlikeImageColor
         } else {
-            BgColor = likeBgColor
-            ImgColor = likeImgColor
+            backgroundColor = likeBackgroundColor
+            imageColor = likeImageColor
         }
     }
-
-
 
     override fun onDraw(canvas: Canvas) {
         // round rect
@@ -139,9 +142,6 @@ class LikeButton @JvmOverloads constructor(
         }
     }
 
-
-
-
     private fun runAnimation(): ValueAnimator {
         return ValueAnimator.ofFloat(0f, 1f).apply {
             addUpdateListener {
@@ -166,7 +166,6 @@ class LikeButton @JvmOverloads constructor(
         }
     }
 
-
     fun toggleUIState() {
         if (uiState == UIState.Like) {
             setUIState(UIState.UnLike, true)
@@ -176,8 +175,7 @@ class LikeButton @JvmOverloads constructor(
     }
 
     private fun setUIState(uiState: UIState, isAnim: Boolean) {
-        updateBgColor(uiState)
-
+        updateBackgroundColor(uiState)
 
         if (isAnim) {
             runAnimation().apply {
@@ -191,5 +189,4 @@ class LikeButton @JvmOverloads constructor(
             invalidate()
         }
     }
-
 }

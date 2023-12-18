@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="LikeButton">
-        <attr name="likeBgColor" format="color"/>
-        <attr name="likeImgColor" format="color"/>
-        <attr name="unlikeBgColor" format="color"/>
-        <attr name="unlikeImgColor" format="color"/>
-        <attr name="iconDrawable" format="reference"/>
-        <attr name="iconWidth" format="dimension"/>
-        <attr name="iconHeight" format="dimension"/>
+        <attr name="likeBackgroundColor" format="color" />
+        <attr name="likeImageColor" format="color" />
+        <attr name="unlikeBackgroundColor" format="color" />
+        <attr name="unlikeImageColor" format="color" />
+        <attr name="iconDrawable" format="reference" />
+        <attr name="iconWidth" format="dimension" />
+        <attr name="iconHeight" format="dimension" />
         <attr name="loopLike" format="boolean" />
     </declare-styleable>
 </resources>

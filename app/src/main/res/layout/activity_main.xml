@@ -84,8 +84,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:likeImgColor="#00BCD4"
-                app:likeBgColor="#BFE8ED" />
+                app:likeBackgroundColor="#BFE8ED"
+                app:likeImageColor="#00BCD4" />
 
             <com.appcent.animatedbutton.LikeButton
                 android:id="@+id/bttn_like"
@@ -99,8 +99,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:likeImgColor="@color/like_img_color"
-                 />
+                app:likeImageColor="@color/like_image_color" />
 
             <com.appcent.animatedbutton.LikeButton
                 android:id="@+id/bttn_celebrate"
@@ -114,9 +113,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:likeImgColor="#FFD700"
-                app:likeBgColor="#001F3F"
-                />
+                app:likeBackgroundColor="#001F3F"
+                app:likeImageColor="#FFD700" />
 
             <com.appcent.animatedbutton.LikeButton
                 android:id="@+id/bttn_wave"
@@ -130,9 +128,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:likeImgColor="#F36262"
-                app:likeBgColor="#F0F0F0"/>
-
+                app:likeBackgroundColor="#F0F0F0"
+                app:likeImageColor="#F36262" />
 
             <com.appcent.animatedbutton.LikeButton
                 android:id="@+id/bttn_checked"
@@ -146,16 +143,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:likeImgColor="@color/teal_200"
-                app:likeBgColor="#CDF4F1"/>
-
+                app:likeBackgroundColor="#CDF4F1"
+                app:likeImageColor="@color/teal_200" />
         </LinearLayout>
-
     </LinearLayout>
-
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

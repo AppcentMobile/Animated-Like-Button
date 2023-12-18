@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="like_bg_color">#feecf0</color>
-    <color name="unlike_bg_color">#f6f5f8</color>
-    <color name="like_img_color">#f6507d</color>
-    <color name="unlike_img_color">#373c68</color>
+    <color name="like_background_color">#feecf0</color>
+    <color name="unlike_background_color">#f6f5f8</color>
+    <color name="like_image_color">#f6507d</color>
+    <color name="unlike_image_color">#373c68</color>
 </resources>
